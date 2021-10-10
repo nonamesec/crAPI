@@ -108,7 +108,7 @@ public class AuthController {
             return ResponseEntity.status(HttpStatus.OK).body(validateOtpResponse);
         }
         else {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(validateOtpResponse);
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(validateOtpResponse);
         }
 
     }
@@ -153,6 +153,6 @@ public class AuthController {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(jwt);
     }
 
-    
+
 
 }

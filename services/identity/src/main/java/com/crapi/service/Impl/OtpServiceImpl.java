@@ -98,7 +98,7 @@ public class OtpServiceImpl implements OtpService {
                  validateOTPResponse = new CRAPIResponse(UserMessage.OTP_VARIFIED_SUCCESS, 200);
              }else{
                  otp.setCount(otp.getCount() + 1);
-                 validateOTPResponse =  new CRAPIResponse(UserMessage.INVALID_OTP, 500);
+                 validateOTPResponse =  new CRAPIResponse(UserMessage.INVALID_OTP, 401);
              }
              otpRepository.save(otp);
              return validateOTPResponse;

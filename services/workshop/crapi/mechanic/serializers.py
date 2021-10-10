@@ -43,6 +43,7 @@ class ServiceRequestSerializer(serializers.ModelSerializer):
     mechanic = MechanicSerializer()
     vehicle = VehicleSerializer()
     created_on = serializers.DateTimeField(format="%d %B, %Y, %H:%M:%S")
+    ssn="123-41-5234"
 
     class Meta:
         """

@@ -17,11 +17,8 @@
 package middlewares
 
 import (
-	"errors"
 	"net/http"
 
-	"crapi.proj/goservice/api/auth"
-	"crapi.proj/goservice/api/responses"
 	"github.com/jinzhu/gorm"
 )
 
@@ -57,11 +54,6 @@ func AccessControlMiddleware(next http.Handler) http.Handler {
 //SetMiddlewareAuthentication checks Authentication token for each request.
 func SetMiddlewareAuthentication(next http.HandlerFunc, db *gorm.DB) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		_, err := auth.ExtractTokenID(r, db)
-		if err != nil {
-			responses.ERROR(w, http.StatusUnauthorized, errors.New("Unauthorized"))
-			return
-		}
 		next(w, r)
 	}
 }

@@ -14,11 +14,12 @@
 
 
 version: '3.7'
-services: 
+services:
 
   crapi-identity:
     container_name: crapi-identity
     image: crapi-identity
+    restart: always
     #ports:
     #  - "127.0.0.1:8080:8080"
     environment:
@@ -59,6 +60,7 @@ services:
   crapi-community:
     container_name: crapi-community
     image: crapi-community
+    restart: always
     #ports:
     #  - "127.0.0.1:8087:8087"
     environment:
@@ -95,6 +97,7 @@ services:
   crapi-workshop:
     container_name: crapi-workshop
     image: crapi-workshop
+    restart: always
     #ports:
     #  - "127.0.0.1:8000:8000"
     environment:
@@ -133,8 +136,9 @@ services:
   crapi-web:
     container_name: crapi-web
     image: crapi-web
+    restart: always
     ports:
-      - "127.0.0.1:8888:80"
+      - "0.0.0.0:8888:80"
     environment:
       - GO_SERVICE=crapi-community:8087
       - JAVA_SERVICE=crapi-identity:8080
@@ -164,6 +168,7 @@ services:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: crapisecretpassword
       POSTGRES_DB: crapi
+    restart: always
     #ports:
     #  - "127.0.0.1:5432:5432"
     volumes:
@@ -173,13 +178,14 @@ services:
         limits:
           cpus: '0.3'
           memory: 128M
-  
+
   mongodb:
     container_name: mongodb
     image: 'mongo'
     environment:
       MONGO_INITDB_ROOT_USERNAME: admin
       MONGO_INITDB_ROOT_PASSWORD: crapisecretpassword
+    restart: always
     #ports:
     #  - "127.0.0.1:27017:27017"
     volumes:
@@ -197,9 +203,10 @@ services:
     environment:
       MH_MONGO_URI: admin:crapisecretpassword@mongodb:27017
       MH_STORAGE: mongodb
-    ports: 
+    restart: always
+    ports:
     #  - "127.0.0.1:1025:1025" # smtp server
-      - "127.0.0.1:8025:8025" # Mail ui
+      - "0.0.0.0:8025:8025" # Mail ui
     deploy:
       resources:
         limits:

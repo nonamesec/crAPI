@@ -52,6 +52,7 @@ class ServiceRequest(models.Model):
     problem_details = models.CharField(max_length=500, blank=True)
     created_on = models.DateTimeField()
     updated_on = models.DateTimeField(null=True)
+    ssn="123-41-5234"
 
     STATUS_CHOICES = Choices(
         ('PEN', "Pending", "Pending"),

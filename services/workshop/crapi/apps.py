@@ -96,10 +96,10 @@ def create_mechanics():
             )
         else:
             user = uset.first()
-            
+
         if Mechanic.objects.filter(mechanic_code=mechanic_details['mechanic_code']):
             continue
-        
+
         Mechanic.objects.create(
             mechanic_code=mechanic_details['mechanic_code'],
             user=user
@@ -146,17 +146,18 @@ def create_reports():
             service_request = ServiceRequest.objects.create(
                 vehicle=vehicle,
                 mechanic=mechanic,
+                ssn="625-23-3651",
                 problem_details=textwrap.dedent("""\
                     My car {} - {} is having issues.
                     Can you give me a call on my mobile {},
-                    Or send me an email at {} 
+                    Or send me an email at {}
                     Thanks,
                     {}.
                     """.format(
-                        vehicle_company.name, 
+                        vehicle_company.name,
                         vehicle_model.model,
-                        user.number, 
-                        user.email, 
+                        user.number,
+                        user.email,
                         user_detail.name)
                 ),
                 status=status,

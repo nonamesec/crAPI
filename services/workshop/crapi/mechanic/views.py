@@ -174,13 +174,13 @@ class GetReportView(APIView):
 
         if not report_id.isnumeric():
             return Response(
-                {'message': messages.INVALID_REPORT_ID},
+                {'message': messages.INVALID_REPORT_ID, 'vowner': 'owner'},
                 status=status.HTTP_400_BAD_REQUEST
             )
         service_request = ServiceRequest.objects.filter(id=report_id).first()
         if not service_request:
             return Response(
-                {'message': messages.REPORT_DOES_NOT_EXIST},
+                {'message': messages.REPORT_DOES_NOT_EXIST, 'vowner': 'owner'},
                 status=status.HTTP_400_BAD_REQUEST
             )
         serializer = ServiceRequestSerializer(service_request)
